@@ -1,0 +1,57 @@
+<div *ngIf="!isPageLoaded" class="loader">
+  <p-progressSpinner
+    [style]="{ width: '250px', height: '250px' }"
+    class="custom-spinner"
+    strokeWidth="3"
+    fill="#EEEEEE"
+    animationDuration=".5s"
+  ></p-progressSpinner>
+</div>
+
+<div *ngIf="isPageLoaded" class="page">
+  <div [class]="theme + ' header'">
+    <div class="buttons-grouper">
+      <button
+        pButton
+        type="button"
+        [class]="theme === 'light' ? 'p-button-secondary' : 'p-button-raised'"
+        icon="pi pi-eye"
+        (click)="changeTheme()"
+      ></button>
+
+      <p-dropdown
+        [options]="itemsPerPage"
+        [(ngModel)]="noOfItems"
+        (onChange)="loadImages()"
+      ></p-dropdown>
+    </div>
+
+    <h3>{{ title }}</h3>
+  </div>
+
+  <div [class]="theme">
+    <p-carousel [value]="items">
+      <ng-template (click)="eventListen($target)" let-item pTemplate="item">
+        <div class="item">
+          <img [src]="item.media.m" />
+
+          <div class="content">
+            <h3>{{ TitleFiller(item.title) }}</h3>
+            <p>{{ TimeFormatter(item.published) }}</p>
+            <p-button
+              (click)="goToPage(item.link)"
+              label="View Post"
+              icon="pi pi-eye"
+              iconPos="left"
+            >
+            </p-button>
+          </div>
+        </div>
+      </ng-template>
+    </p-carousel>
+  </div>
+
+  <div [class]="theme + ' footer'">
+    <p>source : {{ source }}</p>
+  </div>
+</div>
