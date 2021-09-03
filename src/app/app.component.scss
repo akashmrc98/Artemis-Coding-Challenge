@@ -4,9 +4,30 @@
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 
-@media only screen and (min-width: 1024px) {
+@media only screen and (min-width: 512px) {
+  .container {
+    margin: auto auto;
+    width: 80%;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .container {
+    margin: auto auto;
+    width: 60%;
+  }
+}
+
+@media only screen and (min-width: 1266px) {
   .container {
     margin: auto auto;
     width: 40%;
+  }
+}
+
+@media only screen and (min-width: 1820px) {
+  .container {
+    margin: auto auto;
+    width: 30%;
   }
 }

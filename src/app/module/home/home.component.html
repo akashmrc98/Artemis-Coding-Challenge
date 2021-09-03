@@ -33,19 +33,38 @@
   <div *ngIf="!isError" [class]="theme">
     <p-carousel [value]="items">
       <ng-template (click)="eventListen($target)" let-item pTemplate="item">
-        <div class="item">
-          <img [src]="item.media.m" />
+        <div class="card">
+          <div class="card-header">
+            <div class="details-wrapper">
+              <i class="pi pi-user"></i>
+              <span>
+                {{ item.author }}
+              </span>
+            </div>
 
-          <div class="content">
-            <h3>{{ TitleFormatter(item.title) }}</h3>
-            <p>{{ TimeFormatter(item.published) }}</p>
-            <p-button
+            <div class="details-wrapper">
+              <i class="pi pi-globe"></i>
+              <span>
+                {{ TimeFormatter(item.published) }}
+              </span>
+            </div>
+          </div>
+
+          <div class="card-content">
+            <img [src]="item.media.m" />
+          </div>
+
+          <div class="card-footer">
+            <p>{{ TitleFormatter(item.title) }}</p>
+            <button
+              pButton
               (click)="visitPage(item.link)"
               label="View Post"
               icon="pi pi-eye"
               iconPos="left"
-            >
-            </p-button>
+              class="p-button-lg"
+              type="button"
+            ></button>
           </div>
         </div>
       </ng-template>
@@ -53,6 +72,8 @@
   </div>
 
   <div *ngIf="!isError" [class]="theme + ' footer'">
-    <p>source : {{ source }}</p>
+    <p-chip>
+      <a [href]="source">{{ source }}</a>
+    </p-chip>
   </div>
 </div>

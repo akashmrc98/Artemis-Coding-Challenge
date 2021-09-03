@@ -9,6 +9,7 @@ import { CarouselModule } from 'primeng/carousel';
 import { DropdownModule } from 'primeng/dropdown';
 import { FormsModule } from '@angular/forms';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { ChipModule } from 'primeng/chip';
 
 @NgModule({
   declarations: [HomeComponent],
@@ -17,6 +18,7 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
     CommonModule,
     HomeRoutingModule,
     CarouselModule,
+    ChipModule,
     ButtonModule,
     DropdownModule,
     ProgressSpinnerModule,
