@@ -1,6 +1,8 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
+import { retry, catchError } from 'rxjs/operators';
+import { Data } from '../data.model';
 
 @Injectable({
   providedIn: 'any',
@@ -8,9 +10,20 @@ import { Observable } from 'rxjs';
 export class FlickrApiService {
   constructor(private http: HttpClient) {}
 
-  loadImages(): Observable<any> {
-    const url = `https://api.flickr.com/services/feeds/photos_public.gne`;
-    const params = `?format=json&jsoncallback=JSONP_CALLBACK`;
-    return this.http.jsonp<any>(url + params, 'JSONP_CALLBACK');
+  URL: string = `https://api.flickr.com/services/feeds/photos_public.gne`;
+  PARAMS: string = `?format=json&jsoncallback=JSONP_CALLBACK`;
+
+  loadImages(): Observable<Data> {
+    return this.http
+      .jsonp<Data>(this.URL + this.PARAMS, 'JSONP_CALLBACK')
+      .pipe(retry(1), catchError(this.handleError));
+  }
+
+  handleError(error: HttpErrorResponse) {
+    const errorMessage =
+      error.error instanceof ErrorEvent
+        ? error.error.message
+        : error.status + error.message;
+    return throwError(errorMessage);
   }
 }

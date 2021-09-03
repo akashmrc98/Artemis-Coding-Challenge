@@ -20,6 +20,7 @@
       ></button>
 
       <p-dropdown
+        *ngIf="!isError"
         [options]="itemsPerPage"
         [(ngModel)]="noOfItems"
         (onChange)="loadImages()"
@@ -29,7 +30,7 @@
     <h3>{{ title }}</h3>
   </div>
 
-  <div [class]="theme">
+  <div *ngIf="!isError" [class]="theme">
     <p-carousel [value]="items">
       <ng-template (click)="eventListen($target)" let-item pTemplate="item">
         <div class="item">
@@ -51,7 +52,7 @@
     </p-carousel>
   </div>
 
-  <div [class]="theme + ' footer'">
+  <div *ngIf="!isError" [class]="theme + ' footer'">
     <p>source : {{ source }}</p>
   </div>
 </div>
