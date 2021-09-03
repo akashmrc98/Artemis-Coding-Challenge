@@ -36,17 +36,17 @@
         <div class="card">
           <div class="card-header">
             <div class="details-wrapper">
-              <i class="pi pi-user"></i>
               <span>
-                {{ item.author }}
+                <i class="pi pi-user"></i>
+              </span>
+              <span>
+                {{ authorTrimmer(item.author) }}
               </span>
             </div>
 
             <div class="details-wrapper">
-              <i class="pi pi-globe"></i>
-              <span>
-                {{ TimeFormatter(item.published) }}
-              </span>
+              <span> <i class="pi pi-globe"></i></span>
+              <span> posted {{ TimeFormatter(item.published) }} </span>
             </div>
           </div>
 

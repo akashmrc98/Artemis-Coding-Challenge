@@ -34,6 +34,13 @@ export class HomeComponent implements OnInit {
     else this.theme = 'light';
   }
 
+  authorTrimmer(author: string) {
+    let user = author.replace('nobody@flickr.com ("', '');
+    user = user.replace('"', '');
+    user = user.replace(')', '');
+    return user;
+  }
+
   fetchImages() {
     this.isPageLoaded = false;
     this.flickRApiService.fetchImages().subscribe(
