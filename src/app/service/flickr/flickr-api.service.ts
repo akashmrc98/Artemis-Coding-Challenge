@@ -12,10 +12,11 @@ export class FlickrApiService {
 
   URL: string = `https://api.flickr.com/services/feeds/photos_public.gne`;
   PARAMS: string = `?format=json&jsoncallback=JSONP_CALLBACK`;
+  POSTS: string = URL + this.PARAMS;
 
-  loadImages(): Observable<Data> {
+  fetchImages(): Observable<Data> {
     return this.http
-      .jsonp<Data>(this.URL + this.PARAMS, 'JSONP_CALLBACK')
+      .jsonp<Data>(this.POSTS, 'JSONP_CALLBACK')
       .pipe(retry(1), catchError(this.handleError));
   }
 

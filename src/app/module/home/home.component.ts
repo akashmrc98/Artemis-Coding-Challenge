@@ -25,10 +25,8 @@ export class HomeComponent implements OnInit {
   noOfItems: number = 5;
   itemsPerPage: number[] = [5, 10, 15, 20];
 
-  moment: any = moment;
-
   ngOnInit(): void {
-    this.loadImages();
+    this.fetchImages();
   }
 
   changeTheme() {
@@ -36,9 +34,9 @@ export class HomeComponent implements OnInit {
     else this.theme = 'light';
   }
 
-  loadImages() {
+  fetchImages() {
     this.isPageLoaded = false;
-    this.flickRApiService.loadImages().subscribe(
+    this.flickRApiService.fetchImages().subscribe(
       (res) => {
         this.items = res.items.splice(
           res.items.length - this.noOfItems,
@@ -46,10 +44,7 @@ export class HomeComponent implements OnInit {
         );
         this.title = res.title;
         this.source = res.link;
-
-        setTimeout(() => {
-          this.isPageLoaded = true;
-        }, 500);
+        this.isPageLoaded = true;
       },
       (error) => {
         this.isPageLoaded = true;
@@ -65,12 +60,12 @@ export class HomeComponent implements OnInit {
     return moment(date).fromNow();
   }
 
-  TitleFiller(title: string): string {
+  TitleFormatter(title: string): string {
     if (title === '') return 'No Title';
     return title;
   }
 
-  goToPage(link: string) {
+  visitPage(link: string) {
     window.location.href = link;
   }
 }

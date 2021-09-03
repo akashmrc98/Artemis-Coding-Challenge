@@ -23,7 +23,7 @@
         *ngIf="!isError"
         [options]="itemsPerPage"
         [(ngModel)]="noOfItems"
-        (onChange)="loadImages()"
+        (onChange)="fetchImages()"
       ></p-dropdown>
     </div>
 
@@ -37,10 +37,10 @@
           <img [src]="item.media.m" />
 
           <div class="content">
-            <h3>{{ TitleFiller(item.title) }}</h3>
+            <h3>{{ TitleFormatter(item.title) }}</h3>
             <p>{{ TimeFormatter(item.published) }}</p>
             <p-button
-              (click)="goToPage(item.link)"
+              (click)="visitPage(item.link)"
               label="View Post"
               icon="pi pi-eye"
               iconPos="left"
