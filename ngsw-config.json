@@ -4,7 +4,7 @@
   "assetGroups": [
     {
       "name": "app",
-      "installMode": "lazy",
+      "installMode": "prefetch",
       "resources": {
         "files": [
           "/favicon.ico",
@@ -20,7 +20,7 @@
     },
     {
       "name": "assets",
-      "installMode": "lazy",
+      "installMode": "prefetch",
       "updateMode": "prefetch",
       "resources": {
         "files": [
@@ -38,7 +38,7 @@
       ],
       "cacheConfig": {
         "maxAge": "3h",
-        "maxSize": 5,
+        "maxSize": 100,
         "strategy": "performance",
         "timeout": "5s"
       }

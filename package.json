@@ -6,6 +6,7 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
+    "env": "http-server -p 8080 -c-1 dist/challenge",
     "test": "ng test"
   },
   "private": true,
