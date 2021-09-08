@@ -3,6 +3,10 @@ pipeline {
     docker { image 'node:latest' }
   }
   stages {
+    stage('Initialize'){
+        def dockerHome = tool 'Docker'
+        env.PATH = "${dockerHome}/bin:${env.PATH}"
+    }
     stage('Install') {
       steps { sh 'npm install' }
     }
